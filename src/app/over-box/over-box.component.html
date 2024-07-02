@@ -1,0 +1,30 @@
+<section>
+  <form >
+    <!-- title -->
+      <h1>Crea la tua pizza</h1>
+
+      <!-- crea la pizza -->
+      <div>
+        <label for="nome">Scegli il nome alla tua pizza</label>
+        <input required class="btn" type="text" placeholder="nome" [(ngModel)]="enteredNome" id="nome" name="nome" >
+      </div>
+
+      <!-- ingredienti -->
+
+     <div>
+        <label for="nome">Scegli tuoi ingredienti</label>
+        <div>
+
+          <div *ngFor="let ingrediente of ingredienti;let i=index">
+            <div><input type="checkbox" (click)="addIngredients(ingrediente)" [name]="ingrediente">{{ingrediente}}</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- submit/cancel -->
+      <button class="btn" type="submit" (click)="invio()">Crea la tua pizza</button>
+      <button class="btn" (click)="Oncancel()" >Cancel</button>
+
+  </form>
+</section>

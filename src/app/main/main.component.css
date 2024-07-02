@@ -1,0 +1,130 @@
+section{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#box{
+  width: 80vw;
+  min-height: 20vh;
+  border-radius: 2em;
+  background: rgb(255,255,255);
+  background: linear-gradient(58deg, rgba(255,255,255,0.33250620347394544) 0%, rgba(255,254,248,0.7945553221288515) 5%, rgba(255,215,121,1) 22%, rgba(255,185,22,1) 41%, rgba(235,147,0,1) 87%, rgba(255,121,0,1) 100%);  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin: 3em;
+  padding: 1.2em;
+}
+
+#box div {
+  margin-top:1em;
+  color: white;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.3em;
+  font-weight: 900;
+}
+
+
+app-operatore{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#wrapper-operators{
+  display: flex;
+  width: 40vw;
+  overflow-x: auto;
+}
+
+#nome-operatore{
+  margin: 1.3em;
+  padding: 0.4em;
+  color:#FFA62F !important;
+  font-size: 4rem !important;
+  font-weight: 900 !important;
+
+
+}
+
+
+
+.pizza-box,.wrapper{
+  padding: 1em;
+  border: 3px solid grey;
+  border-radius: 2em;
+}
+
+.wrapper{
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pizza-box{
+  margin: 0.5em;
+  font-weight:800 ;
+}
+
+.ingrediente{
+  margin-top: 0 !important;
+  margin: 0 1.2em;
+}
+
+.super-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  width: 80vw;
+  overflow-x: auto;
+}
+
+.subtitle{
+  font-size: 0.5em;
+}
+
+.pizza-box{
+  color: lightskyblue !important;
+  font-size: 1.5em !important;
+}
+
+.btn{
+  border: 5px solid black;
+  width: 35%;
+  height: 80%;
+  margin-top: 2em;
+  border-radius: 1em;
+  padding: 3.2em;
+  background-color: lightcyan;
+  color: #FFA62F;
+  font-weight: 900;
+  border: 3px solid #FFA62F;
+
+}
+
+app-over-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 60vw;
+  border-radius: 2em;
+  height: 80vh;
+  border: 3px solid black;
+  z-index: 99999;
+  position: center;
+  position: fixed;
+  top: 7em;
+  background: rgb(255,255,255);
+  background: linear-gradient(58deg, rgba(255,255,255,0.33250620347394544) 0%, rgba(255,254,248,0.7945553221288515) 5%, rgba(255,215,121,1) 22%, rgba(255,185,22,1) 41%, rgba(235,147,0,1) 87%, rgba(255,121,0,1) 100%);  color: white;
+}
+
+
+.visible.active{
+display: none;
+}

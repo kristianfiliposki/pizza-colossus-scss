@@ -1,0 +1,26 @@
+<section>
+  <div id="wrapper">
+
+    @for (pizza of listapizze; track pizza) {
+      <div class="box">
+          <h1>Nome: {{pizza.nome}}</h1>
+          <img [src]="pizza.img" alt="foto" class="foto">
+          <h3>Prezzo: {{pizza.prezzo}}€</h3>
+        <h4>Ingredienti:</h4><br/>
+        <div class="ingredienti">
+          @for (ingrediente of pizza.ingredienti; track ingrediente) {
+            <div>
+              -{{ingrediente}}
+            </div>
+          }
+          <div>
+          </div>
+        </div>
+        <div></div>
+
+
+        <div>N.{{pizza.id}}</div>
+      </div>
+    }
+  </div>
+</section>
