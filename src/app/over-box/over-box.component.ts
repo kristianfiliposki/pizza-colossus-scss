@@ -16,6 +16,8 @@ export class OverBoxComponent {
   @Output() cancel= new EventEmitter();
   @Output() add = new EventEmitter<pizza>();
 
+
+
   ingredient: string="";
   ingredienti: string[]=[
     "sugo",
@@ -40,7 +42,7 @@ export class OverBoxComponent {
   enteredIngredienti: string[]=[];
 
   calc(){
-   this.prezzofinale= (10 * this.enteredIngredienti.length);
+   this.prezzofinale= (4 + (1.5 * this.enteredIngredienti.length));
    return this.prezzofinale;
 
   }

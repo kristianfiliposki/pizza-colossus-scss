@@ -1,14 +1,30 @@
 import { chefs } from '../../chefs';
-import { Component} from '@angular/core';
-import { user, type pizza } from '../../interfaces';
+import { Component, ElementRef, OnInit, signal } from '@angular/core';
+import { type pizza } from '../../interfaces';
 import { MakepizzaService } from '../makepizza.service';
+import { ViewChild } from '@angular/core';
+import { OverBoxComponent } from '../over-box/over-box.component';
+
 @Component({
   selector: 'app-main',
 
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent {
+export class MainComponent implements OnInit{
+  @ViewChild('TITOLO') nomeNuovo?:ElementRef;
+
+
+  /* in questa fase del componente sono già stati i contenuti  */
+  ngAfterViewInit(){
+      let variabile = this.nomeNuovo!.nativeElement.textContent='Crea la tua pizza: Scegli il tuo chef e la sua migliore pizza!';
+/*    let SignalVariabile= signal(variabile);
+      SignalVariabile.set("cuaio");
+ */   console.log(variabile);
+  }
+
+
+
   /* questi sono tutti i chef che lavorano per la nostra compagnia */
   public operatori = chefs;
 
@@ -42,36 +58,22 @@ export class MainComponent {
   }
 
 
-/* ----- ----- ----- ----- pizze dei chef ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
-
-
-  /* istanzio il dato delle pizze relazionate ai chef  */
-/*   dato ?: pizza[];
- */
-  /* prende i dati sparati da OperatoreComponent. Per fornire le pizze degli operatori. */
-/*   putdati(value: user) {
-    console.log(value.pizze);
-    this.dato = value.pizze;
-    return this.dato;
-  }
- */
-/* ----- ----- ----- ----- pizze dei chef ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 
 
 /* local storage */
 
-/*    savePizza() {
+   savePizza() {
     localStorage.setItem('pizza', JSON.stringify(this.pizza()));
-  } */
+  }
 
-/*   constructor() {
-    this.savePizza();
-    const pizza = localStorage.getItem('pizza');
-    if (pizza) {
-      this.pizza = JSON.parse(pizza);
+ngOnInit(){
+  this.savePizza();
+  const pizza = localStorage.getItem('pizza');
+  if (pizza) {
+    this.pizza = JSON.parse(pizza);
+    console.log(pizza)
     }
-  } */
-
+}
 }
 
 

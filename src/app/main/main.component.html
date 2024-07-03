@@ -1,78 +1,20 @@
 <section >
   <!--TODO DATA ODIERNA CON PIPE,FORMATO ITA  -->
-  <!--TODO SALVA LA PIZZA CREATA CON LOCAL-STORAGE -->
 
   <!-- box -->
   <div id="box">
     <!-- title -->
-    <div>Crea la tua pizza: Scegli il tuo chef e la sua migliore pizza!</div>
+    <div #TITOLO><!-- Crea la tua pizza: Scegli il tuo chef e la sua migliore pizza! --></div>
 
     <!-- pizza-make-button -->
     <button (click)="visiblee()" class="btn" ><h2>Crea tu,la tua pizza</h2></button>
     <!-- hidden-box -->
      @if (visible==false ) {
-       <app-over-box [selected]="visible"  [class.active]="visible" (cancel)="cancel($event)" (add)="add($event)"/>
+        <!-- usare la condizione, anziché [class.active]="visible", rende più sicura l'app -->
+       <app-over-box [selected]="visible"  (cancel)="cancel($event)" (add)="add($event)"  />
      }
-
-<!--     @for (pizza of listapizze; track pizza) {
-      <div>{{pizza.nome}}</div>
-    } -->
-
-
-    <!-- la pizza personalizzata -->
-<!--     @if (!(pizza().nome=="" ) ) {
-      <div class="pizza-box">
-        @if (!(pizza().nome=="") ) {
-          <h1>la tua pizza è: {{pizza().nome}}</h1>
-        }
-
-        <div id="prezzo">
-          @if (!(pizza().prezzo==0) ) {
-            <p>la tua pizza costa: {{pizza().prezzo}} €</p>
-          }
-        </div>
-
-        <div class="">
-          @if (!(pizza().ingredienti.length==0) ) {
-            <h2 class="subtitle">La pizza perfetta è composta da: {{pizza().ingredienti}}</h2>
-          }
-        </div>
-      </div>
-
-    } -->
-
 
 <!-- lista dei chef -->
 
-<!--    <div id="wrapper-operators">
-      @for (operatore of operatori; track operatore.id) {
-        <app-operatore [operatore]="operatore" (select)="putdati($event)" />
-      }
-</div> -->
-<!-- pizze -->
-
-<!--       @if (dato) {
-        <div class="super-box">
-          @for (pizza of dato; track pizza.id) {
-            <div class="wrapper">
-              <div class="pizza-box">
-                {{pizza.nome}}
-              </div>
-              <div class="subtitle">Ecco a voi tutti gli ingredienti:</div>
-              <div>
-                @for (ingrediente of dato[pizza.id].ingredienti; track ingrediente) {
-                  <div class="ingrediente">
-                    {{ingrediente}}
-                  </div>
-                }
-
-              </div>
-            </div>
-          }
-        </div>
-      }
-      @else {
-        <div id="nome-operatore">Scegli il tuo Chef preferito!</div>
-      } -->
     </div>
 </section>

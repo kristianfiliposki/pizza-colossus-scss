@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ViewEncapsulation } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
@@ -12,6 +12,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { OverBoxComponent } from "../over-box/over-box.component";
 import { AppComponent } from "./app.component";
 import { OperatoreComponent } from "../operatore/operatore.component";
+import { CasellaComponent } from '../shared/casella/casella.component';
+import { SalutaDirective } from "../saluta.directive";
 
 
 @NgModule({
@@ -24,14 +26,19 @@ import { OperatoreComponent } from "../operatore/operatore.component";
     ListPizzeComponent,
     CaroselComponent,
     FooterComponent,
+    CasellaComponent,
+    SalutaDirective,
+
   ],
   imports:[
     CommonModule,
+
     BrowserModule,
     FormsModule,
   ],
   bootstrap:[ AppComponent],
 })
 export class AppModule{
+
 
 }
