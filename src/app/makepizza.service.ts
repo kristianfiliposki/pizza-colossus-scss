@@ -93,13 +93,28 @@ export class MakepizzaService {
     }
 
 
-/*     get Pizza(){
-      console.log(this.pizza)
-      return this.pizza;
+/*     prendiPizza(pizze:pizza[], value:pizza){
+      let listaDaAggiornare=this.listaPizze().findIndex(value.id);
+      console.log(listaDaAggiornare)
+
+      console.log("mmm")
     } */
 
+    prendiPizza(pizze: pizza[], value: pizza) {
+      let listaDaAggiornare = pizze.findIndex(pizza => pizza.id === value.id);
+      console.log(listaDaAggiornare);
 
+      if (listaDaAggiornare !== -1) {
+         pizze.splice(listaDaAggiornare, 1); // Ad esempio, per rimuovere la pizza
+      } else {
+        console.log("Pizza non trovata");
+      }
 
+      console.log("mmm");
+    }
 
+    modificaPizza(pizze: pizza[], value: pizza) {
+      /* modifica pizza */
+    }
 
 }

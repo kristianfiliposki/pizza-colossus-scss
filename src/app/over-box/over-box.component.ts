@@ -1,6 +1,6 @@
 import { pizza } from '../../interfaces';
 import { Component, Input, Output ,EventEmitter,inject} from '@angular/core';
-
+import { MakepizzaService } from '../makepizza.service';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './over-box.component.css'
 })
 export class OverBoxComponent {
+  constructor(private MakepizzaService: MakepizzaService) {
+  }
+
 
   @Input() selected ?: boolean;
   @Output() cancel= new EventEmitter();
@@ -34,9 +37,10 @@ export class OverBoxComponent {
   ];
 
 
+  pizze=this.MakepizzaService.ListaDaAggiornare;
+  enteredId=this.pizze.length;
   prezzofinale:number=0;
   enteredImg="/pizze/default.jpeg";
-  enteredId=0;
   enteredNome='';
   enteredPrezzo=10;
   enteredIngredienti: string[]=[];
@@ -66,8 +70,9 @@ export class OverBoxComponent {
 
   invio(){
     console.log("invio")
+    console.log(this.enteredId)
     this.add.emit({
-      id:this.enteredId,
+      id:this.enteredId++,
       img:this.enteredImg,
       nome:this.enteredNome,
       prezzo:this.calc(),

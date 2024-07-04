@@ -14,6 +14,7 @@ import { AppComponent } from "./app.component";
 import { OperatoreComponent } from "../operatore/operatore.component";
 import { CasellaComponent } from '../shared/casella/casella.component';
 import { SalutaDirective } from "../saluta.directive";
+import { PricePipe } from "../price.pipe";
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { SalutaDirective } from "../saluta.directive";
   ],
   imports:[
     CommonModule,
-
+    PricePipe,
     BrowserModule,
     FormsModule,
   ],

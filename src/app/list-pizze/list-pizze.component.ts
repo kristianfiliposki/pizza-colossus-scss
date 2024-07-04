@@ -8,6 +8,6 @@ import { MakepizzaService } from '../makepizza.service';
 export class ListPizzeComponent {
   constructor(private MakepizzaService: MakepizzaService) {
   }
-  listapizze=this.MakepizzaService.ListaDaAggiornare
-
+  listapizze=this.MakepizzaService.ListaDaAggiornare;
+  id=this.MakepizzaService.prendiPizza;
 }
