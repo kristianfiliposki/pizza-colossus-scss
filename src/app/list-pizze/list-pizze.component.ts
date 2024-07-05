@@ -8,6 +8,14 @@ import { MakepizzaService } from '../makepizza.service';
 export class ListPizzeComponent {
   constructor(private MakepizzaService: MakepizzaService) {
   }
+
+  modify :boolean = false;
+
+  ClickModify(){
+    this.modify = !this.modify;
+    console.log(this.modify)
+  }
+
   listapizze=this.MakepizzaService.ListaDaAggiornare;
   id=this.MakepizzaService.prendiPizza;
 }

@@ -15,7 +15,8 @@ import { OperatoreComponent } from "../operatore/operatore.component";
 import { CasellaComponent } from '../shared/casella/casella.component';
 import { SalutaDirective } from "../saluta.directive";
 import { PricePipe } from "../price.pipe";
-
+import { UpdateFormComponent } from "../update-form/update-form.component";
+UpdateFormComponent
 
 @NgModule({
   declarations:[
@@ -29,6 +30,8 @@ import { PricePipe } from "../price.pipe";
     FooterComponent,
     CasellaComponent,
     SalutaDirective,
+    UpdateFormComponent,
+
 
   ],
   imports:[

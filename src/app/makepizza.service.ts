@@ -7,6 +7,11 @@ import { type pizza } from '../interfaces';
 export class MakepizzaService {
   constructor() { }
 
+
+  booleano :boolean = false;
+
+  modify=signal(this.booleano);
+
     /* questo è il dato che conterrà la pizza dell'utente */
     element: pizza = {
       id: 0,
@@ -100,6 +105,14 @@ export class MakepizzaService {
       console.log("mmm")
     } */
 
+
+
+    prendiId(pizze: pizza[], value: pizza){
+      let IdpizzaSelezionata = pizze.findIndex(pizza => pizza.id === value.id);
+      console.log(IdpizzaSelezionata);
+
+    }
+
     prendiPizza(pizze: pizza[], value: pizza) {
       let listaDaAggiornare = pizze.findIndex(pizza => pizza.id === value.id);
       console.log(listaDaAggiornare);
@@ -111,10 +124,11 @@ export class MakepizzaService {
       }
 
       console.log("mmm");
+
     }
 
-    modificaPizza(pizze: pizza[], value: pizza) {
-      /* modifica pizza */
+    modificaPizza(booleano: boolean , value: pizza) {
+
     }
 
 }

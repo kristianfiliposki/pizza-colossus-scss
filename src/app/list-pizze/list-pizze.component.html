@@ -1,6 +1,9 @@
 <section>
   <div id="wrapper">
 
+    @if ( modify == true) {
+      <app-update-form></app-update-form>
+    }
     @for (pizza of listapizze; track pizza;) {
       <div class="box">
         <h1>Nome: {{pizza.nome}}</h1>
@@ -15,7 +18,9 @@
           }
         </div>
 
-        <button (click)="id(listapizze ,pizza )" type="button" class="btn btn-secondary" data-mdb-ripple-init>Secondary</button>
+        <button (click)="id(listapizze ,pizza )" type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>Elimina</button>
+        <button (click)="ClickModify()"  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>Modifica</button>
+
 
         <div>N.{{pizza.id}}</div>
       </div>
