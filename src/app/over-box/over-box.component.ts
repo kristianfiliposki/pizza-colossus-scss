@@ -1,5 +1,5 @@
 import { pizza } from '../../interfaces';
-import { Component, Input, Output ,EventEmitter,inject} from '@angular/core';
+import { Component, Input, Output ,EventEmitter,inject, ChangeDetectionStrategy} from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
 
 import { CommonModule } from '@angular/common';
@@ -8,12 +8,12 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-over-box',
   templateUrl: './over-box.component.html',
-  styleUrl: './over-box.component.css'
+  styleUrl: './over-box.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverBoxComponent {
   constructor(private MakepizzaService: MakepizzaService) {
   }
-
 
   @Input() selected ?: boolean;
   @Output() cancel= new EventEmitter();
@@ -48,7 +48,6 @@ export class OverBoxComponent {
   calc(){
    this.prezzofinale= (4 + (1.5 * this.enteredIngredienti.length));
    return this.prezzofinale;
-
   }
 
   addIngredients(element:string) {

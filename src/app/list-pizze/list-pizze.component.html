@@ -1,15 +1,17 @@
 <section>
   <div id="wrapper">
-
     @if ( modify == true) {
       <app-update-form></app-update-form>
     }
+
     @for (pizza of listapizze; track pizza;) {
       <div class="box">
         <h1>Nome: {{pizza.nome}}</h1>
-        <img [src]="pizza.img" alt="foto" class="foto">
+        <div class="w-100 h-100">
+          <img [src]="pizza.img" alt="foto" class="foto">
+        </div>
         <h3>Prezzo: {{pizza.prezzo | price}}</h3>
-        <h4>Ingredienti:</h4><br/>
+        <h4>Ingredienti:</h4>
         <div class="ingredienti">
           @for (ingrediente of pizza.ingredienti; track ingrediente) {
             <div>
@@ -24,7 +26,6 @@
 
         <div>N.{{pizza.id}}</div>
       </div>
-
     }
   </div>
 </section>

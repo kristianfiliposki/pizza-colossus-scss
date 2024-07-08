@@ -1,6 +1,6 @@
 section{
   background-color: orange;
-  height:10vh ;
+  min-height:10vh ;
   display: flex;
   justify-content: space-around;
   padding-left:4em ;
