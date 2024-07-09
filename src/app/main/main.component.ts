@@ -32,12 +32,14 @@ export class MainComponent implements OnInit{
   }
 
   listapizze=this.MakepizzaService.ListaDaAggiornare
-  pizza = this.MakepizzaService.pizza;
+  pizza = this.MakepizzaService.SignalPizze;
   /* questo è il dato che conterrà la pizza dell'utente */
 
 
   /* Prende i dati sparati dal form che crea la pizza */
   add(value:pizza){
+    console.log(value)
+    console.log(value)
     this.MakepizzaService.aggiungiPizza(value);
     this.visible=true;
   }
