@@ -16,7 +16,7 @@ import { CasellaComponent } from '../shared/casella/casella.component';
 import { SalutaDirective } from "../saluta.directive";
 import { PricePipe } from "../price.pipe";
 import { UpdateFormComponent } from "../update-form/update-form.component";
-UpdateFormComponent
+import { HttpClient } from "@angular/common/http";
 
 @NgModule({
   declarations:[
@@ -39,6 +39,7 @@ UpdateFormComponent
     PricePipe,
     BrowserModule,
     FormsModule,
+    HttpClient,
   ],
   bootstrap:[ AppComponent],
 })

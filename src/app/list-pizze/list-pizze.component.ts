@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, } from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
-import { Observable, interval } from 'rxjs';
+import { Observable, } from 'rxjs';
 @Component({
   selector: 'app-list-pizze',
   templateUrl: './list-pizze.component.html',
