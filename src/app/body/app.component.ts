@@ -10,13 +10,15 @@ import { Beer } from '../beer';
 
 export class AppComponent implements OnInit{
   title = 'pizza-colossus';
-  places= signal<Beer | undefined>
+  places = signal<Beer | undefined>
   private httpClient = inject(HttpClient);
 
   ngOnInit() {
-  const subscription = this.httpClient.get<{places: Beer}>('https://api.openbrewerydb.org/v1/breweries/{obdb-id}').subscribe({
-    next:(response)=>{console.log(response.places.name)}
-  })
+  const subscription = this.httpClient
+    .get<{places: Beer}>('https://api.openbrewerydb.org/v1/breweries/b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0')
+    .subscribe({
+      next:(response)=>{console.log(response, 'rispostaServizio')}
+    });
 
 }
 
