@@ -2,6 +2,7 @@ import { NgModule, ViewEncapsulation } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
+import { provideHttpClient } from '@angular/common/http';
 
 /* componenti */
 import { HeaderComponent } from "../header/header.component";
@@ -16,10 +17,15 @@ import { CasellaComponent } from '../shared/casella/casella.component';
 import { SalutaDirective } from "../saluta.directive";
 import { PricePipe } from "../price.pipe";
 import { UpdateFormComponent } from "../update-form/update-form.component";
-UpdateFormComponent
 
 @NgModule({
-  declarations:[
+  imports: [
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    PricePipe,
+  ],
+  declarations: [
     AppComponent,
     HeaderComponent,
     MainComponent,
@@ -31,18 +37,8 @@ UpdateFormComponent
     CasellaComponent,
     SalutaDirective,
     UpdateFormComponent,
-
-
   ],
-  imports:[
-    CommonModule,
-    PricePipe,
-    BrowserModule,
-    FormsModule,
-  ],
-  bootstrap:[ AppComponent],
+  providers: [provideHttpClient()],
+  bootstrap: [AppComponent],
 })
-export class AppModule{
-
-
-}
+export class AppModule { }
