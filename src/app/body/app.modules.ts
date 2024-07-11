@@ -1,8 +1,8 @@
-import { NgModule, ViewEncapsulation } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
-import { provideHttpClient } from '@angular/common/http';
+import {  HttpHandlerFn, HttpRequest, provideHttpClient, withInterceptors } from '@angular/common/http';
 
 /* componenti */
 import { HeaderComponent } from "../header/header.component";
@@ -17,6 +17,20 @@ import { CasellaComponent } from '../shared/casella/casella.component';
 import { SalutaDirective } from "../saluta.directive";
 import { PricePipe } from "../price.pipe";
 import { UpdateFormComponent } from "../update-form/update-form.component";
+import { RFormComponent } from "../r-form/r-form.component";
+
+function logginInterceptor(
+  request: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+){
+  const req= request.clone(
+    {
+      headers:request.headers.set('ciao' , "sdajsad")
+    }
+  );
+  console.log(request)
+  return next(request)
+}
 
 @NgModule({
   imports: [
@@ -24,6 +38,7 @@ import { UpdateFormComponent } from "../update-form/update-form.component";
     BrowserModule,
     FormsModule,
     PricePipe,
+    RFormComponent
   ],
   declarations: [
     AppComponent,
@@ -37,8 +52,14 @@ import { UpdateFormComponent } from "../update-form/update-form.component";
     CasellaComponent,
     SalutaDirective,
     UpdateFormComponent,
+
+
   ],
-  providers: [provideHttpClient()],
+  providers: [
+    provideHttpClient(
+      withInterceptors([logginInterceptor])
+    )
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

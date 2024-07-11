@@ -119,7 +119,8 @@ constructor() { }
     }
 
     modificaPizza(booleano: boolean , value: pizza) {
-
+      /* To do modofy */
     }
+
 
 }

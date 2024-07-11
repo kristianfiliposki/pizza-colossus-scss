@@ -1,43 +1,35 @@
-import { Component, } from '@angular/core';
+import { type pizza } from './../../interfaces';
+import { Component, OnInit, effect, inject, signal, } from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
-import { Observable, } from 'rxjs';
+import { Observable, catchError, of, throwError, } from 'rxjs';
+import { CallService } from '../call.service';
+import { type Beer } from '../beer';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-list-pizze',
   templateUrl: './list-pizze.component.html',
   styleUrl: './list-pizze.component.css'
 })
-export class ListPizzeComponent {
-  constructor(private MakepizzaService: MakepizzaService) {
-  }
+export class ListPizzeComponent implements OnInit{
+  /* services */
+  private CallService= inject(CallService);
+  private MakepizzaService= inject(MakepizzaService);
 
+  /* dati */
   modify :boolean = false;
   datoDaModificare=0;
+  listapizze=this.MakepizzaService.listaPizze;
+/*   listaBar :Beer[] | undefined=this.CallService.Bars*/
+  error=signal('');
+  Bars:Beer[]=[];
+  birrerie = signal<Beer[] | undefined>(undefined);
+  Birrerie$: Observable<Beer[] | undefined>= of(this.Bars);
+  private httpClient = inject(HttpClient);
+  id=this.MakepizzaService.prendiPizza;
 
 
-osservatore$ = new Observable<number>((subscriber) => {
-  subscriber.next(43);
-  subscriber.next(2112);
-  subscriber.complete();
-});
 
-/* TODO CAPISCILO SUBSCRIVI. */
-ngOnInit() {
-  console.log(this.MakepizzaService.listaPizze);
-  console.log("coiap");
-
-  const subscription = this.osservatore$.subscribe({
-    next: (ciao: number) => console.log(ciao),
-    complete: () => console.log("funziona"),
-  });
-}
-
-  /*     const subscription=this.MakepizzaService.pizze$.subscribe((value)=>
-        {
-          console.log(value);
-          this.listapizze=value;
-
-        }) */
-      /* sottiscrivere= ascoltare i cambiamenti */
 
   ClickModify(){
     this.modify = !this.modify;
@@ -48,8 +40,19 @@ ngOnInit() {
     console.log(this.MakepizzaService.listaPizze)
   }
 
-  listapizze=this.MakepizzaService.listaPizze;
-
-  id=this.MakepizzaService.prendiPizza;
-
+  ngOnInit() {
+    // Esegui la chiamata per ottenere i dati
+    this.CallService.subscription()
+    .pipe(catchError((error)=>throwError(()=> new Error("funziona l' errore"))))
+    .subscribe({
+      next:(response)=>{
+        this.birrerie.set(response);
+        this.Birrerie$=of(response);
+        console.log(this.birrerie())
+      },
+      error: (error)=>{
+        this.error.set(error)
+      },
+    });
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Beer } from '../beer';
+import { CallService } from '../call.service';
+
 
 @Component({
   selector: 'app-body',
@@ -8,18 +8,15 @@ import { Beer } from '../beer';
   styleUrl: './app.component.css',
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'pizza-colossus';
-  places = signal<Beer | undefined>
-  private httpClient = inject(HttpClient);
+  error=this.CallService.error;
+  birrerie = this.CallService.birrerie;
+
+  constructor(private CallService: CallService) {
+  }
 
   ngOnInit() {
-  const subscription = this.httpClient
-    .get<{places: Beer}>('https://api.openbrewerydb.org/v1/breweries/b54b16e1-ac3b-4bff-a11f-f7ae9ddc27e0')
-    .subscribe({
-      next:(response)=>{console.log(response, 'rispostaServizio')}
-    });
-
+    this.CallService.subscription()
 }
-
 }

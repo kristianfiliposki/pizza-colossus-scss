@@ -1,9 +1,21 @@
+<!-- toDo PUT -->
+ <!--  -->
+
 <app-header/>
 <app-casella [prova]="''">
-  <h1>Clicca per provare l'host</h1>
+  @if (error()) {
+    <h1 class="alert alert-secondary" role="alert">
+      Qualcosa è andato storto
+    </h1>
+  }
+  @else {
+    <h1 class="alert alert-secondary" role="alert">La tua chiamata funziona!</h1>
+  }
 </app-casella>
 <app-carosel/>
 <app-main />
 <app-list-pizze/>
+<app-r-form/>
 <app-footer/>
+
 
