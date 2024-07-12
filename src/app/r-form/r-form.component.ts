@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgModule } from '@angular/core';
-FormsModule
 
 
 @Component({
@@ -18,7 +17,13 @@ FormsModule
   }
 })
 export class RFormComponent {
+  /* dati */
+  EnteredName=signal("");
+  EnteredEmail=signal("");
+
     OnSubmit(form:NgForm){
-      console.log(form)
+      console.log(form.value)
+      this.EnteredName.set(form.value.nome);
+      this.EnteredEmail.set(form.value.email);
     }
 }

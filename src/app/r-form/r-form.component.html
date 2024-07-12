@@ -2,35 +2,34 @@
   <form #form="ngForm" (ngSubmit)="OnSubmit(form)" class="row w-50 gy-2 gx-3 align-items-center">
 
 
+    <h1>Form</h1>
    <!-- Name input -->
     <div data-mdb-input-init class="form-outline mb-4">
-      <input type="text" id="name" class="form-control" ngModel />
       <label class="form-label" for="name">Name</label>
+      <input type="text" id="name" class="form-control" name="nome" ngModel required />
     </div>
 
     <!-- Email input -->
     <div data-mdb-input-init class="form-outline mb-4">
-      <input type="email" id="email" class="form-control"  ngModel/>
       <label class="form-label" for="email" >Email address</label>
+      <input type="email" id="email" class="form-control" name="email" email ngModel required  />
     </div>
 
-    <!-- Checkbox -->
-    <div class="form-check d-flex justify-content-center mb-4">
-      <input
-        ngModel
-        class="form-check-input me-2"
-        type="checkbox"
-        value=""
-        id="form5Example3"
-        checked
-      />
-      <label class="form-check-label" for="form5Example3">
-        I have read and agree to the terms
-      </label>
-    </div>
 
     <!-- Submit button -->
-    <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Subscribe</button>
+    <button (click)="OnSubmit(form)" data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Subscribe</button>
 
+
+    @if (
+      (form.value.nome || form.value.email)
+      && form.invalid
+      && form.dirty) {
+      <div class="alert alert-danger">Manca Qualcosa</div>
+    }
+
+    @if (!(EnteredName()=="")) {
+      <h1>Benventuto <strong> {{EnteredName()}}</strong>
+      </h1>
+    }
   </form>
 </section>
