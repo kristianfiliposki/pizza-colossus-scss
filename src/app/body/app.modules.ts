@@ -18,6 +18,8 @@ import { SalutaDirective } from "../saluta.directive";
 import { PricePipe } from "../price.pipe";
 import { UpdateFormComponent } from "../update-form/update-form.component";
 import { RFormComponent } from "../r-form/r-form.component";
+import { ReactiveFormComponent } from "../reactive-form/reactive-form.component";
+
 
 function logginInterceptor(
   request: HttpRequest<unknown>,
@@ -38,7 +40,8 @@ function logginInterceptor(
     BrowserModule,
     FormsModule,
     PricePipe,
-    RFormComponent
+    RFormComponent,
+    ReactiveFormComponent,
   ],
   declarations: [
     AppComponent,

@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="Onsubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" class="form-control" placeholder="Enter name" formControlName="name" required >
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input type="email" class="form-control" id="email" placeholder="email" formControlName="email" required email>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+  @if (
+    (!form.value.name || !form.value.email)
+    && form.invalid
+    && form.dirty) {
+    <div class="alert alert-danger">Manca Qualcosa</div>
+  }
+
+  <p>{{EnteredName()}}</p>
+
+</form>
