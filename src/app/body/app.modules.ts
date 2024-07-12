@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import {  HttpHandlerFn, HttpRequest, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { RouterOutlet, provideRouter , Routes, RouterLink} from "@angular/router";
 
 /* componenti */
 import { HeaderComponent } from "../header/header.component";
@@ -34,6 +35,16 @@ function logginInterceptor(
   return next(request)
 }
 
+const routes: Routes = [
+  {
+    path:'',
+    component:RFormComponent,
+  },
+  {
+    path:'/form',
+    component:ReactiveFormComponent,
+  }
+];
 @NgModule({
   imports: [
     CommonModule,
@@ -42,6 +53,8 @@ function logginInterceptor(
     PricePipe,
     RFormComponent,
     ReactiveFormComponent,
+    RouterOutlet,
+    RouterLink,
   ],
   declarations: [
     AppComponent,
@@ -59,6 +72,19 @@ function logginInterceptor(
 
   ],
   providers: [
+    provideRouter(
+      [
+        {
+          path:'',
+          component:RFormComponent,
+        },
+        {
+          path:'form',
+          component:ReactiveFormComponent,
+        }
+
+      ]
+    ),
     provideHttpClient(
       withInterceptors([logginInterceptor])
     )
