@@ -14,14 +14,22 @@
 </app-casella>
 <app-carosel/>
 <app-main />
-<app-list-pizze/>
-<div>
-  <a routerLink="form">Reactive form</a>
-</div>
-<div>
-  <a routerLink=""> form</a>
-</div>
-<router-outlet></router-outlet>
+  <a routerLink="form">
+    <button  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>
+      Reactive form
+    </button>
+  </a>
+  <a routerLink="menu">
+    <button  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>
+      Menu Delle Pizze
+    </button>
+  </a>
+  <a routerLink="">
+    <button  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>
+      form
+    </button>
+  </a>
+<router-outlet ></router-outlet>
 <app-footer/>
 
 

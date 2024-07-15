@@ -1,5 +1,5 @@
 import { type pizza } from './../../interfaces';
-import { Component, OnInit, effect, inject, signal, } from '@angular/core';
+import { Component, OnInit, computed, effect, inject, input, signal, } from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
 import { Observable, catchError, of, throwError, } from 'rxjs';
 import { CallService } from '../call.service';
@@ -20,13 +20,15 @@ export class ListPizzeComponent implements OnInit{
   modify :boolean = false;
   datoDaModificare=0;
   listapizze=this.MakepizzaService.listaPizze;
-/*   listaBar :Beer[] | undefined=this.CallService.Bars*/
+  /*  listaBar :Beer[] | undefined=this.CallService.Bars*/
   error=signal('');
   Bars:Beer[]=[];
   birrerie = signal<Beer[] | undefined>(undefined);
   Birrerie$: Observable<Beer[] | undefined>= of(this.Bars);
   private httpClient = inject(HttpClient);
   id=this.MakepizzaService.prendiPizza;
+  pizzaId=input.required<number>()
+  pizzaName=computed(()=>this.MakepizzaService.ListaDaAggiornare.find((pizza)=>pizza.id === this.pizzaId())?.nome)
 
 
 

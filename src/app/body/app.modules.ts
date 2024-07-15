@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import {  HttpHandlerFn, HttpRequest, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { RouterOutlet, provideRouter , Routes, RouterLink} from "@angular/router";
+import { RouterOutlet, provideRouter , Routes, RouterLink, withComponentInputBinding} from "@angular/router";
 
 /* componenti */
 import { HeaderComponent } from "../header/header.component";
@@ -75,6 +75,10 @@ const routes: Routes = [
     provideRouter(
       [
         {
+          path:'menu',
+          component:ListPizzeComponent,
+        },
+        {
           path:'',
           component:RFormComponent,
         },
@@ -83,7 +87,8 @@ const routes: Routes = [
           component:ReactiveFormComponent,
         }
 
-      ]
+      ],
+      withComponentInputBinding(),
     ),
     provideHttpClient(
       withInterceptors([logginInterceptor])
