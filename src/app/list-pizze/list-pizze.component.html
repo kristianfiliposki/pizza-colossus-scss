@@ -1,5 +1,5 @@
 <h1 style="text-align: center;">Il numero delle pizze è <strong>{{listapizze.length}}</strong></h1>
-<h3>Il nome della pizza è {{pizzaName()}}</h3>
+<h3>Il nome della pizza è {{PizzaName}}</h3>
 <section>
   <div id="wrapper">
 
@@ -24,9 +24,9 @@
         </div>
 
         <div class=" btns">
-          <button (click)="id(listapizze ,pizza )" type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>Elimina</button>
+          <button (click)="delete(listapizze ,pizza)" type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>Elimina</button>
           <button (click)="ClickModify()"  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>Modifica</button>
-          <button (input)="pizza.id" type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>seleziona</button>
+          <button (click)="selected(pizza.id)" type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>seleziona</button>
         </div>
 
 

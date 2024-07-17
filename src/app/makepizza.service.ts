@@ -1,12 +1,17 @@
 import { Injectable, signal } from '@angular/core';
 import { type pizza } from '../interfaces';
 import { BehaviorSubject } from 'rxjs';
-
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class MakepizzaService {
-constructor() { }
+  constructor(private router: Router,) {}
+
+  selected(id:number){
+    console.log(id)
+    this.router.navigate(['/menu', id]);  }
 
   ListaDaAggiornare :pizza[]=[
     {
@@ -58,10 +63,10 @@ constructor() { }
     },
   ];
   pizze$ = new BehaviorSubject<pizza[]>(this.ListaDaAggiornare);
-
+  IdSelect:number=0;
   SignalPizze = signal(this.ListaDaAggiornare);
   listaPizze=this.SignalPizze();
-
+  idPIZZA=0;
   booleano :boolean = false;
   modify=signal(this.booleano);
 
@@ -76,16 +81,11 @@ constructor() { }
   /* mostra se il form è visibile o meno */
   visible ?: boolean = true;
 
-
     aggiungiPizza(value:pizza){
-
       this.listaPizze=[...this.listaPizze, value];
       this.pizze$.next(this.listaPizze)
       console.log(this.listaPizze)
     }
-
-
-
 
   /* prende il booleano sparato da over-box, che permetterà di rendere visibile la finestra di creazione pizza */
   FormVisible(){
@@ -98,10 +98,13 @@ constructor() { }
   }
 
 
-    prendiId(pizze: pizza[], value: pizza){
-      let IdpizzaSelezionata = pizze.findIndex(pizza => pizza.id === value.id);
+    prendiId(pizze: pizza[], value: number | string){
+      let IdString= String(value);
+      let IdpizzaSelezionata = pizze.findIndex(pizza => pizza.id === value);
       console.log(IdpizzaSelezionata);
-
+      this.idPIZZA=IdpizzaSelezionata;
+      this.selected(this.idPIZZA);
+      return IdpizzaSelezionata;
     }
 
     prendiPizza(pizze: pizza[], value: pizza) {
@@ -113,13 +116,11 @@ constructor() { }
       } else {
         console.log("Pizza non trovata");
       }
-
-      console.log("mmm");
-
     }
 
+
     modificaPizza(booleano: boolean , value: pizza) {
-      /* To do modofy */
+
     }
 
 

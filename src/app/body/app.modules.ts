@@ -20,7 +20,7 @@ import { PricePipe } from "../price.pipe";
 import { UpdateFormComponent } from "../update-form/update-form.component";
 import { RFormComponent } from "../r-form/r-form.component";
 import { ReactiveFormComponent } from "../reactive-form/reactive-form.component";
-
+import { NotFoundComponent } from "../not-found/not-found.component";
 
 function logginInterceptor(
   request: HttpRequest<unknown>,
@@ -28,7 +28,7 @@ function logginInterceptor(
 ){
   const req= request.clone(
     {
-      headers:request.headers.set('ciao' , "sdajsad")
+      headers:request.headers.set('ciao' , "siamo gli intercettori")
     }
   );
   console.log(request)
@@ -55,6 +55,7 @@ const routes: Routes = [
     ReactiveFormComponent,
     RouterOutlet,
     RouterLink,
+    NotFoundComponent,
   ],
   declarations: [
     AppComponent,
@@ -75,6 +76,10 @@ const routes: Routes = [
     provideRouter(
       [
         {
+          path:'menu/:pizzaId',
+          component:ListPizzeComponent,
+        },
+        {
           path:'menu',
           component:ListPizzeComponent,
         },
@@ -85,7 +90,12 @@ const routes: Routes = [
         {
           path:'form',
           component:ReactiveFormComponent,
+        },
+        {
+          path:"**",
+          component:NotFoundComponent,
         }
+
 
       ],
       withComponentInputBinding(),

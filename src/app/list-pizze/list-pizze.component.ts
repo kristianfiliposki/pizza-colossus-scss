@@ -1,10 +1,11 @@
 import { type pizza } from './../../interfaces';
 import { Component, OnInit, computed, effect, inject, input, signal, } from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
-import { Observable, catchError, of, throwError, } from 'rxjs';
+import { Observable, Subscription, catchError, of, throwError, } from 'rxjs';
 import { CallService } from '../call.service';
 import { type Beer } from '../beer';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-pizze',
@@ -15,6 +16,12 @@ export class ListPizzeComponent implements OnInit{
   /* services */
   private CallService= inject(CallService);
   private MakepizzaService= inject(MakepizzaService);
+  constructor(private router: Router,private route: ActivatedRoute) {}
+
+  selected(id:number){
+    console.log(id)
+    this.router.navigate(['/menu', id]);  }
+
 
   /* dati */
   modify :boolean = false;
@@ -26,10 +33,9 @@ export class ListPizzeComponent implements OnInit{
   birrerie = signal<Beer[] | undefined>(undefined);
   Birrerie$: Observable<Beer[] | undefined>= of(this.Bars);
   private httpClient = inject(HttpClient);
-  id=this.MakepizzaService.prendiPizza;
-  pizzaId=input.required<number>()
-  pizzaName=computed(()=>this.MakepizzaService.ListaDaAggiornare.find((pizza)=>pizza.id === this.pizzaId())?.nome)
-
+  delete=this.MakepizzaService.prendiPizza;
+  id=this.MakepizzaService.selected;
+  PizzaName="";
 
 
 
@@ -41,9 +47,29 @@ export class ListPizzeComponent implements OnInit{
   update(){
     console.log(this.MakepizzaService.listaPizze)
   }
+  cercaID(){
+    this.route.paramMap.subscribe({
+      next:(param)=>{
+        const pizzaID= Number(param.get('pizzaId'))
+        this.PizzaName=
+        this.MakepizzaService.ListaDaAggiornare.find((p)=>p.id=== pizzaID)!.nome
+      }
+    }
+
+  )
+  }
 
   ngOnInit() {
     // Esegui la chiamata per ottenere i dati
+    console.log(this.route)
+
+
+    this.cercaID();
+
+
+
+
+
     this.CallService.subscription()
     .pipe(catchError((error)=>throwError(()=> new Error("funziona l' errore"))))
     .subscribe({
