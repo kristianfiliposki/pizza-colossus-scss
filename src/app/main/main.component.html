@@ -1,4 +1,16 @@
+<app-casella [prova]="''">
+  @if (error()) {
+    <h1 class="alert alert-secondary" role="alert">
+      Qualcosa è andato storto
+    </h1>
+  }
+  @else {
+    <h1 class="alert alert-secondary" role="alert">La tua chiamata funziona!</h1>
+  }
+</app-casella>
+<app-carosel/>
 <section >
+
 
   <!-- box -->
   <div id="box">

@@ -21,6 +21,7 @@ import { UpdateFormComponent } from "../update-form/update-form.component";
 import { RFormComponent } from "../r-form/r-form.component";
 import { ReactiveFormComponent } from "../reactive-form/reactive-form.component";
 import { NotFoundComponent } from "../not-found/not-found.component";
+import { routes } from "./app.routes";
 
 function logginInterceptor(
   request: HttpRequest<unknown>,
@@ -35,16 +36,6 @@ function logginInterceptor(
   return next(request)
 }
 
-const routes: Routes = [
-  {
-    path:'',
-    component:RFormComponent,
-  },
-  {
-    path:'/form',
-    component:ReactiveFormComponent,
-  }
-];
 @NgModule({
   imports: [
     CommonModule,
@@ -74,30 +65,7 @@ const routes: Routes = [
   ],
   providers: [
     provideRouter(
-      [
-        {
-          path:'menu/:pizzaId',
-          component:ListPizzeComponent,
-        },
-        {
-          path:'menu',
-          component:ListPizzeComponent,
-        },
-        {
-          path:'',
-          component:RFormComponent,
-        },
-        {
-          path:'form',
-          component:ReactiveFormComponent,
-        },
-        {
-          path:"**",
-          component:NotFoundComponent,
-        }
-
-
-      ],
+      routes,
       withComponentInputBinding(),
     ),
     provideHttpClient(

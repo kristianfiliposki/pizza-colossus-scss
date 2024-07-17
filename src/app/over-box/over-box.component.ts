@@ -1,7 +1,7 @@
 import { pizza } from '../../interfaces';
 import { Component, Input, Output ,EventEmitter,inject, ChangeDetectionStrategy} from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
-
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,8 +12,10 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverBoxComponent {
-  constructor(private MakepizzaService: MakepizzaService) {
+  constructor(private MakepizzaService: MakepizzaService, private router: Router) {
   }
+
+
 
   @Input() selected ?: boolean;
   @Output() cancel= new EventEmitter();
@@ -77,6 +79,7 @@ export class OverBoxComponent {
       prezzo:this.calc(),
       ingredienti:this.enteredIngredienti,
     })
+    this.router.navigate(['/menu']);
   }
 
 }

@@ -1,34 +1,8 @@
 <!-- toDo PUT -->
-
+<!-- toDo Detail -->
+<!-- toDO BackBrowser -->
+<!-- toDO Ordina Pizze (ID desc/cresc) -->
 <app-header/>
-<app-casella [prova]="''">
-  @if (error()) {
-    <h1 class="alert alert-secondary" role="alert">
-      Qualcosa è andato storto
-    </h1>
-  }
-  @else {
-    <h1 class="alert alert-secondary" role="alert">La tua chiamata funziona!</h1>
-  }
-</app-casella>
-<app-carosel/>
-<app-main />
-  <a routerLink="form">
-    <button  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>
-      Reactive form
-    </button>
-  </a>
-  <a routerLink="menu">
-    <button  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>
-      Menu Delle Pizze
-    </button>
-  </a>
-  <a routerLink="">
-    <button  type="button" class="btn btn-secondary m-1" data-mdb-ripple-init>
-      form
-    </button>
-  </a>
-
 <router-outlet ></router-outlet>
 <app-footer/>
 

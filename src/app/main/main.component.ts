@@ -4,6 +4,7 @@ import { type pizza } from '../../interfaces';
 import { MakepizzaService } from '../makepizza.service';
 import { ViewChild } from '@angular/core';
 import { OverBoxComponent } from '../over-box/over-box.component';
+import { CallService } from '../call.service';
 
 @Component({
   selector: 'app-main',
@@ -28,11 +29,13 @@ export class MainComponent implements OnInit{
   /* questi sono tutti i chef che lavorano per la nostra compagnia */
   public operatori = chefs;
 
-  constructor(private MakepizzaService: MakepizzaService) {
+  constructor(private MakepizzaService: MakepizzaService, private CallService: CallService) {
   }
 
   listapizze=this.MakepizzaService.ListaDaAggiornare
   pizza = this.MakepizzaService.SignalPizze;
+  error=this.CallService.error;
+
   /* questo è il dato che conterrà la pizza dell'utente */
 
 

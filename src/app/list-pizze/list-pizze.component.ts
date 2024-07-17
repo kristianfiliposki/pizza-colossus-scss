@@ -1,5 +1,5 @@
 import { type pizza } from './../../interfaces';
-import { Component, OnInit, computed, effect, inject, input, signal, } from '@angular/core';
+import { Component, OnInit, computed, effect, inject, Input, signal, } from '@angular/core';
 import { MakepizzaService } from '../makepizza.service';
 import { Observable, Subscription, catchError, of, throwError, } from 'rxjs';
 import { CallService } from '../call.service';
@@ -23,40 +23,41 @@ export class ListPizzeComponent implements OnInit{
     this.router.navigate(['/menu', id]);  }
 
 
-  /* dati */
-  modify :boolean = false;
-  datoDaModificare=0;
-  listapizze=this.MakepizzaService.listaPizze;
-  /*  listaBar :Beer[] | undefined=this.CallService.Bars*/
-  error=signal('');
-  Bars:Beer[]=[];
-  birrerie = signal<Beer[] | undefined>(undefined);
-  Birrerie$: Observable<Beer[] | undefined>= of(this.Bars);
-  private httpClient = inject(HttpClient);
-  delete=this.MakepizzaService.prendiPizza;
-  id=this.MakepizzaService.selected;
-  PizzaName="";
+    /* dati */
+    modify :boolean = false;
+    datoDaModificare=0;
+    listapizze=this.MakepizzaService.listaPizze;
+    /*  listaBar :Beer[] | undefined=this.CallService.Bars*/
+    error=signal('');
+    Bars:Beer[]=[];
+    birrerie = signal<Beer[] | undefined>(undefined);
+    Birrerie$: Observable<Beer[] | undefined>= of(this.Bars);
+    private httpClient = inject(HttpClient);
+    delete=this.MakepizzaService.prendiPizza;
+    id=this.MakepizzaService.selected;
+    PizzaName="";
+    @Input() rdato ?: string;
 
 
 
-  ClickModify(){
-    this.modify = !this.modify;
-    console.log(this.modify)
-  }
-
-  update(){
-    console.log(this.MakepizzaService.listaPizze)
-  }
-  cercaID(){
-    this.route.paramMap.subscribe({
-      next:(param)=>{
-        const pizzaID= Number(param.get('pizzaId'))
-        this.PizzaName=
-        this.MakepizzaService.ListaDaAggiornare.find((p)=>p.id=== pizzaID)!.nome
-      }
+    ClickModify(){
+      this.modify = !this.modify;
+      console.log(this.modify)
     }
 
-  )
+    update(){
+      console.log(this.MakepizzaService.listaPizze)
+    }
+    cercaID(){
+      this.route.paramMap.subscribe({
+        next:(param)=>{
+          const pizzaID= Number(param.get('pizzaId'))
+          this.PizzaName=
+          this.MakepizzaService.ListaDaAggiornare.find((p)=>p.id=== pizzaID)!.nome
+        }
+      }
+
+    )
   }
 
   ngOnInit() {
@@ -83,4 +84,5 @@ export class ListPizzeComponent implements OnInit{
       },
     });
   }
+
 }
