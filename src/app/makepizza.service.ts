@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class MakepizzaService {
 constructor() { }
 
+  isLogged=signal(false);
+
   ListaDaAggiornare :pizza[]=[
     {
       id:0,

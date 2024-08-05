@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { MakepizzaService } from '../makepizza.service';
 
 
 @Component({
@@ -17,11 +18,14 @@ import { NgModule } from '@angular/core';
   }
 })
 export class RFormComponent {
+  service=inject(MakepizzaService)
   /* dati */
   EnteredName=signal("");
   EnteredEmail=signal("");
+  isLogged=this.service.isLogged;
 
     OnSubmit(form:NgForm){
+      this.isLogged.set(true);
       console.log(form.value)
       this.EnteredName.set(form.value.nome);
       this.EnteredEmail.set(form.value.email);

@@ -20,6 +20,7 @@ import { PricePipe } from "../price.pipe";
 import { UpdateFormComponent } from "../update-form/update-form.component";
 import { RFormComponent } from "../r-form/r-form.component";
 import { ReactiveFormComponent } from "../reactive-form/reactive-form.component";
+import { authGuard } from "../auth.guard";
 
 
 function logginInterceptor(
@@ -75,12 +76,18 @@ const routes: Routes = [
     provideRouter(
       [
         {
+          path:'pizze',
+          component:ListPizzeComponent,
+          canActivate:[authGuard],
+        },
+        {
           path:'',
           component:RFormComponent,
         },
         {
           path:'form',
           component:ReactiveFormComponent,
+
         }
 
       ]
